@@ -1,0 +1,74 @@
+<!-- myapp/templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Based URL Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .safe {
+            color: rgb(4, 104, 36);
+            font-weight: bold; /* Make the text very bold */
+            font-size: 24px;   /* Make the text very big */
+        }
+        .unsafe {
+            color: rgb(193, 11, 11);
+            font-weight: bold; /* Make the text very bold */
+            font-size: 24px;   /* Make the text very big */
+        }
+        .NOT_ACCESSIBLE {
+            color: rgb(18, 18, 168);
+            font-weight: bold; /* Make the text very bold */
+            font-size: 18px;   /* Make the text very big */
+        }
+        .author {
+            margin-top: 80px;  /* Add some space between output and author info */
+        }
+        .author a {
+            color: blue;  /* Change link color to blue */
+            text-decoration: underline;  /* Add underline to link */
+            font-weight: bold;  /* Make the link text bold */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>AI Based URL Checker</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" id="inputValue" name="inputValue" size="50" placeholder="Enter URL"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    {% if input_value %}
+    <div id="output">
+        <p>URL: {{ input_value }}</p>
+        <p><span class="{% if output_value == 'SAFE' %}safe{% elif output_value == 'UNSAFE' %}unsafe{% else %}NOT_ACCESSIBLE{% endif %}">{{ output_value }}</span></p>
+    </div>
+    <div class="author">
+        <p>Owner: Prasanth Sagar Kottakota</p>
+        <p><a href="https://prasanthsagarkottakota.github.io/Prasanth_Sagar/">Portfolio</a> | <a href="https://www.linkedin.com/in/prasanthsagar-kottakota/">LinkedIn</a></p>
+    </div>
+    {% endif %}
+    <div class="note">
+        <p><em>The algorithm is still in beta stage. Expect even simple mistakes. This is a demonstration or first trial on just URL-based checks. Thank you.</em></p>
+        <p><em>If something seems very fishy, please fill out the <a href="https://forms.gle/ncVPnNh9bkp6VXFS8">Google form</a>. We will try to correct our mistakes.</em></p>
+    </div>
+</div>
+</div>
+</body>
+</html>

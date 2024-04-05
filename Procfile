@@ -1,0 +1,1 @@
+web gunicorn URL_Detection.wsgi:application --log-file -
